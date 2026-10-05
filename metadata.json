@@ -1,0 +1,6 @@
+{
+  "name": "JoDev Studio",
+  "description": "Studio d'architecture et de cadrage web & mobile pour concevoir, chiffrer et générer les livrables techniques et prompts IA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,70 @@
+import { ProjectInput } from '../types/architect';
+
+export const PROJECT_PRESETS: { name: string; tag: string; description: string; data: Partial<ProjectInput> }[] = [
+  {
+    name: "Application Terrain & Chantier (BTP/Logistique)",
+    tag: "Offline-First & Mobile",
+    description: "Application mobile pour techniciens sur le terrain sans réseau + dashboard web de gestion pour le siège.",
+    data: {
+      projectName: "BTP Connect & Field Ops",
+      clientName: "Groupe BTP Solution",
+      clientObjective: "Permettre aux 60 techniciens et chefs de chantier de saisir les rapports journaliers, prendre des photos horodatées et valider les feuilles de présence directement sur le terrain, même en sous-sol sans 4G. Le siège doit voir les remontées en direct dès reconnexion.",
+      devBrainstorm: "Je pense faire une app mobile sous React Native (Expo) et un back en Node.js/Postgres. Il faut absolument une persistance locale SQLite car le réseau coupe souvent. Pour les photos, compression avant upload sur S3 pour économiser la data. Côté web, un tableau de bord pour les conducteurs de travaux avec filtres par chantier et export PDF automatique en fin de semaine.",
+      targetPlatforms: ['web', 'mobile-ios', 'mobile-android'],
+      techStack: {
+        frontend: "React 19 / Vite / Tailwind CSS",
+        mobile: "React Native (Expo SDK 52) + WatermelonDB/SQLite",
+        backend: "Node.js (Express / TypeScript)",
+        database: "PostgreSQL (Supabase)",
+        orm: "Drizzle ORM",
+        auth: "Supabase Auth + Biométrie mobile",
+        hosting: "Google Cloud Run + Supabase",
+        thirdParty: ["Cloudflare R2 (Stockage photos)", "Expo Push Notifications", "PDFKit"],
+      },
+    },
+  },
+  {
+    name: "Marketplace de Services & Réservation en Direct",
+    tag: "Paiement & Temps Réel",
+    description: "Plateforme de mise en relation de prestataires avec acomptes en ligne, géolocalisation et messagerie intégrée.",
+    data: {
+      projectName: "UrbanPro Services",
+      clientName: "Urban Services SAS",
+      clientObjective: "Créer une marketplace où des particuliers peuvent réserver des artisans qualifiés en moins de 2 minutes. Le client veut sécuriser le paiement avec un séquestre (escrow) jusqu'à validation de la prestation et permettre d'échanger par chat in-app.",
+      devBrainstorm: "Application web responsive pour les clients + appli mobile pour les pros (pour accepter les missions en push notif). Côté paiement, Stripe Connect Custom avec transferts automatiques. Pour le chat, Socket.io ou Supabase Realtime. Base de données relationnelle obligatoire pour la comptabilité et les transactions.",
+      targetPlatforms: ['web', 'mobile-ios', 'mobile-android'],
+      techStack: {
+        frontend: "Next.js 15 / React 19 / Tailwind",
+        mobile: "React Native (Expo)",
+        backend: "Node.js / Express (Clean Architecture)",
+        database: "PostgreSQL avec extension PostGIS (géoloc)",
+        orm: "Prisma",
+        auth: "Clerk / JWT",
+        hosting: "Cloud Run / Vercel",
+        thirdParty: ["Stripe Connect", "Mapbox", "Resend (Emails)", "OneSignal (Push)"],
+      },
+    },
+  },
+  {
+    name: "App Mobile Santé & Suivi Nutritionnel",
+    tag: "IA & Abonnements In-App",
+    description: "Application mobile grand public de coaching santé, analyse de repas par IA et abonnement Apple/Google Pay.",
+    data: {
+      projectName: "NutriPulse AI",
+      clientName: "HealthyLife Startup",
+      clientObjective: "Permettre aux utilisateurs de suivre leur alimentation au quotidien en prenant leurs plats en photo (reconnaissance d'ingrédients par vision IA), suivi des macronutriments, rappels quotidiens et monétisation via abonnement premium.",
+      devBrainstorm: "Application mobile first très soignée avec animations fluides (React Native Reanimated). Intégration de l'API Gemini Vision pour l'analyse des assiettes. Gestion des abonnements avec RevenueCat (In-App Purchases iOS et Android). Sauvegarde dans le cloud avec chiffrement des données de santé.",
+      targetPlatforms: ['mobile-ios', 'mobile-android', 'web'],
+      techStack: {
+        frontend: "React 19 (Landing page & backoffice admin)",
+        mobile: "React Native (Expo) + Reanimated",
+        backend: "Node.js / Fastify / TypeScript",
+        database: "PostgreSQL + Redis (cache rate limit)",
+        orm: "Drizzle ORM",
+        auth: "Apple Sign-In + Google Auth",
+        hosting: "Railway / Cloud Run",
+        thirdParty: ["RevenueCat", "Gemini API (Vision)", "Sentry"],
+      },
+    },
+  },
+];
